@@ -1,0 +1,58 @@
+log_dir: ./runs/
+task_name: CIDM_stimulated # CIDM_stimulated
+outf: ./results/stim_data/
+viz: true
+
+data:
+  data_dir: /home/dongjiayi/workbench/denoise/data/scMultiSim/tree3_cells2000_grn100_b4_drop0.1/seed0/
+  data_name: demo.h5ad
+  batch_name: batch
+  state_name: cellstate
+  is_raw_data: true
+  n_top_features: 0
+  batch_scale: true
+  vis: true
+
+log:
+  stdout: false
+  stderr: false
+  tensorboard: true
+
+model:
+  num_hidden: 1
+
+  mlp_width: 128 # 128
+  mlp_depth: 8 # 8
+  mlp_ac: 0.2 # 0.2 
+  mlp_dropout: 0.2 # 0.2
+
+  # lambda_l1: 1
+  lambda_rec: 0.1 # 0.1
+  lambda_kl1: 0.0001 # 0.0001
+  lambda_kl2: 0.0001 # 0.0001
+  lambda_clf: 0.1 # 0.1
+  lambda_align: 1 # 1
+
+  h_tol: 0.000001
+  rho_max: 1000.0
+  rho: 1.0
+  alpha: 5.0
+  optimizer: adamw
+  lr: 0.001 
+  weight_decay: 0
+  nonlinear: true
+
+  dag_anneal_steps: 100 # 100
+  adv_step: 2
+
+  val_split: 0
+  batch_size: 512
+
+  epochs: 500 # 500
+
+reproduc:
+  seed: 1
+  benchmark: false
+  deterministic: true
+    
+
